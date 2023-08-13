@@ -4,7 +4,7 @@ export const runtime = "edge";
 
 export async function GET() {
   const fontData = await fetch(
-    new URL("../../../assets/Lexend-Bold.ttf", import.meta.url)
+    new URL("../../assets/Lexend-Bold.ttf", import.meta.url)
   ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
