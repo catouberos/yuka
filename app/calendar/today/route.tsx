@@ -1,8 +1,11 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 import { ImageResponse } from "next/server";
 
 dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Ho_Chi_Minh");
 
 export const runtime = "edge";
 
@@ -10,8 +13,8 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
   const from = searchParams.has("date")
-    ? dayjs.utc(searchParams.get("date")!)
-    : dayjs.utc();
+    ? dayjs.utc(searchParams.get("date")!).startOf("day")
+    : dayjs.tz().startOf("day");
   const to = from.add(1, "day");
 
   const fontData = await fetch(
