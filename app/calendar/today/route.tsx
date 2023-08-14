@@ -84,7 +84,7 @@ export async function GET(request: Request) {
           <h1
             style={{ fontSize: "72px", fontFamily: "Lexend", fontWeight: 700 }}
           >
-            Phát hành hôm nay
+            Phát hành {from.format("DD/MM/YYYY")}
           </h1>
         </div>
         {books.map((bookRow, i) => (
