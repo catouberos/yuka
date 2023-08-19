@@ -47,7 +47,7 @@ export async function GET() {
     ),
     {
       width: 1200,
-      height: 600,
+      height: 630,
     }
   );
 }
