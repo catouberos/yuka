@@ -1,4 +1,4 @@
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
@@ -8,6 +8,8 @@ export async function GET(request: Request) {
   const name = searchParams.get("name") ?? "Đang cập nhật";
   const format = searchParams.get("format") ?? "Đang cập nhật";
   const image = searchParams.get("image") ?? null;
+  const demographic = searchParams.get("demographic") ?? null;
+  const genres = searchParams.getAll("genre") ?? [];
 
   const interData = await fetch(
     new URL("../../assets/Inter-Regular.ttf", import.meta.url)
@@ -20,32 +22,12 @@ export async function GET(request: Request) {
     (
       <div
         style={{
-          display: "flex",
-          height: "100%",
-          width: "100%",
-          alignItems: "center",
-          justifyContent: "center",
           fontFamily: "Inter",
         }}
-        tw="bg-zinc-900 text-zinc-200"
+        tw="flex h-full w-full items-center justify-center bg-zinc-900 text-zinc-200"
       >
-        <div
-          style={{
-            display: "flex",
-            padding: "3rem",
-            height: "100%",
-            width: "100%",
-            gap: "3rem",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              flex: "1",
-            }}
-          >
+        <div tw="flex w-full h-full p-12">
+          <div tw="flex flex-col justify-between flex-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 777.49 208.12"
@@ -75,62 +57,58 @@ export async function GET(request: Request) {
               </g>
             </svg>
 
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
+            <div tw="flex flex-col">
               <span>
                 <span
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    borderRadius: "0.375rem",
-                    padding: "0.25rem 0.5rem",
                     background: "#89c4f4",
                   }}
-                  tw="text-zinc-900"
+                  tw="text-zinc-900 py-1 px-2 rounded-md flex items-center mr-3"
                 >
                   {format}
                 </span>
+                {demographic && (
+                  <span tw="py-1 px-2 mr-3 rounded-md flex items-center flex items-center border border-zinc-700 text-zinc-200 bg-zinc-800">
+                    {demographic}
+                  </span>
+                )}
+                {genres &&
+                  genres.map((genre) => (
+                    <span tw="py-1 px-2 mr-3 rounded-md flex items-center flex items-center border border-zinc-700 text-zinc-200 bg-zinc-800">
+                      {genre}
+                    </span>
+                  ))}
               </span>
               <h1
                 style={{
                   fontFamily: "Lexend",
-                  fontWeight: "700",
-                  fontSize: "3rem",
                 }}
+                tw="font-bold text-5xl"
               >
                 {name}
               </h1>
             </div>
           </div>
+
           {image ? (
             <div
               style={{
-                display: "flex",
                 height: "525px",
                 width: "350px",
-                borderRadius: "0.375rem",
-                overflow: "hidden",
               }}
-              tw="shadow-md"
+              tw="shadow-md rounded-md overflow-hidden flex"
             >
               <img
-                style={{ height: "100%", width: "100%", objectFit: "cover" }}
+                style={{ objectFit: "cover" }}
+                tw="h-full w-full"
                 src={image}
               />
             </div>
           ) : (
             <div
               style={{
-                display: "flex",
                 height: "525px",
                 width: "350px",
-                borderRadius: "0.375rem",
-                overflow: "hidden",
-                fontWeight: 700,
                 padding: "1.5rem",
                 alignItems: "center",
                 justifyContent: "center",
@@ -139,7 +117,7 @@ export async function GET(request: Request) {
                 lineHeight: "2.5rem",
                 fontFamily: "Lexend",
               }}
-              tw="bg-zinc-800 text-zinc-500 text-4xl"
+              tw="bg-zinc-800 text-zinc-500 text-4xl flex rounded-md overflow-hidden font-bold"
             >
               {name}
             </div>

@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
