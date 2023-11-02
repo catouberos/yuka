@@ -1,20 +1,11 @@
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
 export async function GET() {
   return new ImageResponse(
     (
-      <div
-        style={{
-          display: "flex",
-          height: "100%",
-          width: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-        tw="bg-zinc-900 text-zinc-200"
-      >
+      <div tw="flex h-full w-full items-center justify-center bg-zinc-900 text-zinc-200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 777.49 208.12"

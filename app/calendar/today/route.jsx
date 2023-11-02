@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -9,11 +9,11 @@ dayjs.tz.setDefault("Asia/Ho_Chi_Minh");
 
 export const runtime = "edge";
 
-export async function GET(request: Request) {
+export async function GET(request) {
   const { searchParams } = new URL(request.url);
 
   const from = searchParams.has("date")
-    ? dayjs.utc(searchParams.get("date")!).startOf("day")
+    ? dayjs.utc(searchParams.get("date")).startOf("day")
     : dayjs.tz().startOf("day");
   const to = from.add(1, "day");
 
@@ -103,7 +103,7 @@ export async function GET(request: Request) {
           >
             {bookRow.map((book) => {
               if (book.cover || book.baseCover) {
-                let cover: string;
+                let cover;
                 if (book.cover.length > 0) cover = book.cover[0];
                 else if (book.baseCover.length > 0) cover = book.baseCover[0];
 

@@ -44,12 +44,12 @@ export async function GET() {
           <h1
             style={{ fontSize: "64px", fontFamily: "Lexend", fontWeight: 700 }}
           >
-            Lịch phát hành
+            Danh mục
           </h1>
         </div>
 
         <img
-          src="https://tana.moe/calendar.png"
+          src="https://tana.moe/browse.png"
           style={{ width: "80%" }}
           tw="-mb-72"
         />
