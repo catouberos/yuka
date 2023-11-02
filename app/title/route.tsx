@@ -9,7 +9,7 @@ export async function GET(request: Request) {
   const format = searchParams.get("format") ?? "Đang cập nhật";
   const image = searchParams.get("image") ?? null;
   const demographic = searchParams.get("demographic") ?? null;
-  const genres = searchParams.getAll("genre") ?? [];
+  const genres = searchParams.getAll("genre").slice(0, 4) ?? [];
 
   const interData = await fetch(
     new URL("../../assets/Inter-Regular.ttf", import.meta.url)
@@ -63,18 +63,18 @@ export async function GET(request: Request) {
                   style={{
                     background: "#89c4f4",
                   }}
-                  tw="text-zinc-900 py-1 px-2 rounded-md flex items-center mr-3"
+                  tw="text-zinc-900 py-1 px-2 rounded-md flex items-center mr-3 whitespace-nowrap"
                 >
                   {format}
                 </span>
                 {demographic && (
-                  <span tw="py-1 px-2 mr-3 rounded-md flex items-center flex items-center border border-zinc-700 text-zinc-200 bg-zinc-800">
+                  <span tw="py-1 px-2 mr-3 rounded-md flex items-center flex whitespace-nowrap items-center border border-zinc-700 text-zinc-200 bg-zinc-800">
                     {demographic}
                   </span>
                 )}
                 {genres &&
                   genres.map((genre) => (
-                    <span tw="py-1 px-2 mr-3 rounded-md flex items-center flex items-center border border-zinc-700 text-zinc-200 bg-zinc-800">
+                    <span tw="py-1 px-2 mr-3 rounded-md flex items-center flex whitespace-nowrap items-center border border-zinc-700 text-zinc-200 bg-zinc-800">
                       {genre}
                     </span>
                   ))}
