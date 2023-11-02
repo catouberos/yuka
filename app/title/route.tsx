@@ -63,7 +63,7 @@ export async function GET(request: Request) {
                   style={{
                     background: "#89c4f4",
                   }}
-                  tw="text-zinc-900 py-1 px-2 rounded-md flex items-center mr-3 whitespace-nowrap"
+                  tw="text-zinc-900 py-1 px-2 rounded-md flex items-center mr-3"
                 >
                   {format}
                 </span>
