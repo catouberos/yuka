@@ -49,7 +49,7 @@ export async function GET() {
         </div>
 
         <img
-          src="https://tana.moe/calendar.png"
+          src="https://tana.moe/img/calendar.png"
           style={{ width: "80%" }}
           tw="-mb-72"
         />

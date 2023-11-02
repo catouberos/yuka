@@ -49,7 +49,7 @@ export async function GET() {
         </div>
 
         <img
-          src="https://tana.moe/browse.png"
+          src="https://tana.moe/img/browse.png"
           style={{ width: "80%" }}
           tw="-mb-72"
         />
